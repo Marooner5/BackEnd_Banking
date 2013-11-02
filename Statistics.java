@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,9 +8,14 @@ import java.util.List;
 /**
  * @author Andrew Littler
  *This class is going to handle grabbing and calculating the statistics required in the program.
+ *As well as hold the necessary stats variables
  */
+
 public class Statistics {
 
+	public static ArrayList<Integer> custyWaitTime = new ArrayList<Integer>();
+	public static ArrayList<Integer> tellerIdleTime = new ArrayList<Integer>();
+	
 	public static double standardDev(List<Integer> waitTimeList){
 		return Math.sqrt(getVariance(waitTimeList));
 	}

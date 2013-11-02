@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 
 /**
- * @author Andrew Littler and Tam Huynh This class is going to act as the driver
+ * @author Andrew Littler and Tim Huynh This class is going to act as the driver
  *         class for the program.
  */
 public class Bank {
@@ -30,7 +30,7 @@ public class Bank {
 
 		// this block receives teller quantity info from the user
 		tellerNumber = getTellerNumber(tellerNumber, setUp);
-
+		setUp.close();
 		// this block reads the file and creates customer objects from it
 		readFile(driveIn);
 
@@ -84,9 +84,9 @@ public class Bank {
 			long tTime;
 			boolean walkIn;
 
-			int i = 0;
+			//int i = 0; testing purposes
 
-			while (i<15) {
+			while (/*i<15 testing purposes*/ in.hasNextLine()) {
 				String line = in.nextLine();
 				Scanner lineParts = new Scanner(line);
 
@@ -99,8 +99,10 @@ public class Bank {
 					} else {
 						Customer custy = new Customer(arrival, tTime, true);
 					}
-					i++;
+					// i++; testing purposes
 					System.out.println(arrival + " " + tTime + " " + walkIn);
+					in.close();
+					lineParts.close();
 				} catch (InputMismatchException ime) {
 					System.out.println("Data in the file is corrupt");
 				} catch (NoSuchElementException nsee) {
