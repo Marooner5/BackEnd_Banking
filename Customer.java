@@ -19,4 +19,8 @@ public class Customer {
 			this.walkIn=walkIn;	
 		}
 		
+		public long calculateWaitTime(){
+			return Clock.globalTime - arrival;
+		}
+		
 }
