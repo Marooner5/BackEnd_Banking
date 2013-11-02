@@ -1,3 +1,5 @@
+import java.util.Queue;
+
 /**
  * 
  */
@@ -11,13 +13,22 @@ public class Teller {
 	private long idleTime;
 	private long customersHelped;
 	private int tellerID;
+	private Queue tellerQ;
 	
-	public void checkDriveIn(){
+	
+	
+	public boolean checkDriveIn(Queue driveIn){
 		//peek at drive in queue
+		return !driveIn.isEmpty();
 	}
 	
 	public void updateIdleTime(){
 		// first need to determine when idle
+		
+	}
+	
+	public boolean checkIfIdle(Queue tellerQ){
+		return this.tellerQ.isEmpty();
 	}
 
 }

@@ -20,15 +20,26 @@ public class Bank {
 	public static void main(String[] args) {
 		// TODO send customers to teller and arrival q
 		int tellerNumber = 3; // received from user, how many tellers available
-		String s; // string received from user
+		String s = ""; // string received from user
 		boolean driveIn = true;// received from user, if drive in is available
 
 		Scanner setUp = new Scanner(System.in);
 
 		// this block received drive in info from the user
-		do {
+		driveIn = checkDriveInStatus(setUp, driveIn, s);
+
+		// this block receives teller quantity info from the user
+		tellerNumber = getTellerNumber(tellerNumber, setUp);
+
+		// this block reads the file and creates customer objects from it
+		readFile(driveIn);
+
+	}// main
+	
+	public static boolean checkDriveInStatus(Scanner in, boolean driveIn, String s){
+		do{
 			System.out.println("Is the drive-thru active? Yes or no");
-			s = setUp.next().toLowerCase();
+			s = in.next().toLowerCase();
 			if (s.equals("yes"))
 				driveIn = true;
 			else if (s.equals("no"))
@@ -37,26 +48,31 @@ public class Bank {
 				System.out.println("Please enter in valid data. Which is a 'yes' or 'no'.. without the quotes.");
 			}
 		} while (!s.equals("yes") && !s.equals("no"));
-
-		// this block receives teller quantity info from the user
+		
+		return driveIn;
+	}
+	
+	public static int getTellerNumber(int tellerNumber, Scanner setUp){
 		do {
-			System.out.println("How many tellers do you want to try?");
-			if (!setUp.hasNextInt()) {
-				System.out.println("Please enter valid data. I.E. an integer. Preferably greater than zero");
-			} else {
-				tellerNumber = setUp.nextInt();
-				if (tellerNumber > 0) {
-					System.out.println("That's a valid entry, starting program.");
-					break;
-				} else if (tellerNumber == 0) {
-					System.out.println("Must be a sunday. No tellers available. Closing up bank.");
-					return;
-				} else if (tellerNumber < 0)
-					System.out.println("I'm sorry but that is just impossible. Negative tellers? Please try again.");
+		System.out.println("How many tellers do you want to try?");
+		if (!setUp.hasNextInt()) {
+			System.out.println("Please enter valid data. I.E. an integer. Preferably greater than zero");
+		} else {
+			tellerNumber = setUp.nextInt();
+			if (tellerNumber > 0) {
+				System.out.println("That's a valid entry, starting program.");
+				break;
+			} else if (tellerNumber == 0) {
+				System.out.println("Must be a sunday. No tellers available. Closing up bank.");
+				break;
+			} else if (tellerNumber < 0)
+				System.out.println("I'm sorry but that is just impossible. Negative tellers? Please try again.");
 			}
 		} while (setUp.nextInt() < 0);
-
-		// this block reads the file and creates customer objects from it
+			return tellerNumber;
+	}
+	
+	public static void readFile(boolean driveIn){
 		try {
 
 			String fileName = "Customers.txt";
@@ -70,7 +86,7 @@ public class Bank {
 
 			int i = 0;
 
-			while (in.hasNextLine()) {
+			while (i<15) {
 				String line = in.nextLine();
 				Scanner lineParts = new Scanner(line);
 
@@ -96,7 +112,7 @@ public class Bank {
 		} catch (FileNotFoundException fnfe) {
 			System.out.println("File not found");
 		}
-
 	}
-
+	
 }
+	
