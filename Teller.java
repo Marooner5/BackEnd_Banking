@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -13,7 +14,7 @@ public class Teller {
 	private long idleTime;
 	private long customersHelped;
 	private int tellerID;
-	private Queue tellerQ;
+	private Queue<Customer> tellerQ = new LinkedList<>();
 	
 	
 	
