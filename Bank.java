@@ -11,8 +11,7 @@ import java.util.Scanner;
  */
 
 /**
- * @author Andrew Littler and Tim Huynh This class is going to act as the driver
- *         class for the program.
+ * @author Andrew Littler
  */
 public class Bank {
 
